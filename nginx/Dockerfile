@@ -6,7 +6,7 @@ FROM nginx
 #RUN mkdir -p /app && export GOPATH=/app && export PATH=$PATH:$GOPATH/bin && mkdir -p $GOPATH/src/github.com/user 
 #RUN mkdir $GOPATH/src/github.com/user/goapp 
 #RUN  mkdir -p /go/src/app
-ADD default.conf /etc/nginx/conf.d/
+ADD default-test.conf /etc/nginx/conf.d/
 CMD service nginx restart
 
 # Build the outyet command inside the container.
