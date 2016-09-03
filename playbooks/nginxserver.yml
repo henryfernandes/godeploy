@@ -1,5 +1,5 @@
 --- # Seting up local server
-- hosts: nginxserver
+- hosts: local
   users: deployer
   connection: ssh
   become: yes

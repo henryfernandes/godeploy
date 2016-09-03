@@ -1,7 +1,7 @@
 [local]
 localhost
 
-[nginxweb]
+[nginxserver]
 
 [appserver]
 
