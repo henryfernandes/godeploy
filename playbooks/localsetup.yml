@@ -6,9 +6,9 @@
   gather_facts: no
   pre_tasks:
   - name: Start time
-    raw: date > /home/depolyer/time.log
+    raw: date > $HOME/time.log
   roles:
   - local
   post_tasks:
   - name: End Time
-    raw: date >> /home/depolyer/time.log    
+    raw: date >> $HOME/time.log    

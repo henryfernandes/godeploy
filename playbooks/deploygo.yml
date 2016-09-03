@@ -6,9 +6,9 @@
   gather_facts: yes
   pre_tasks:
   - name: Start time
-    raw: date > /home/deployer/time.log
+    raw: date > $HOME/time.log
   roles:
   - deploygo
   post_tasks:
   - name: End Time
-    raw: date >> /home/deployer/time.log    
+    raw: date >> $HOME/time.log    
