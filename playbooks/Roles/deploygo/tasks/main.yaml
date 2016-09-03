@@ -1,0 +1,7 @@
+- name: Create folder on the app container
+  command:  mkdir -p /go/src/app
+- name: Copy Go App file to app container
+  copy: src=new.go dest=/go/src/app/new.go owner=root group=root mode=0644
+- name: Build Go App
+  command: cd /go/src/app/ && go install
+  notify: start goapp

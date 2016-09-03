@@ -1,0 +1,21 @@
+- name: Build image and with buildargs
+     docker_image:
+       path: /home/deployer/godeploy/goapp
+       name: goapp
+       buildargs:
+         listen_port: 8484
+- name: Deploy 1st Container for GoApp
+    docker:
+      name: app1
+      image: goapp
+      state: reloaled
+      ports:
+      - "8081:8484"
+- name: Deploy 2nd Container for GoApp
+    docker:
+      name: app2
+      image: goapp
+      state: reloaled
+      ports:
+      - "8082:8484"
+

@@ -1,0 +1,4 @@
+- name: start docker
+  command: chkconfig docker on; service docker restart
+#- name: pull git repo
+#  git: repo=https://github.com/henryfernandes/godeploy.git dest=/home/deployer/godeploy

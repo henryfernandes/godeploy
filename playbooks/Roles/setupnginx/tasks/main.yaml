@@ -1,0 +1,6 @@
+- name: Install Nginx server
+  yum: pgk=nginx state=installed
+- name: Copy nginx conf to container
+  copy: src=default-test.conf dest=/etc/nginx/conf.d/default.conf owner=root group=root mode=0644
+  notify: restart nginx
+

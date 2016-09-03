@@ -1,21 +1,19 @@
-# Start from a Debian image with the latest version of Go installed
-# and a workspace (GOPATH) configured at /go.
-FROM nginx
+# Start from a Centos image and install nginx.
+FROM centos
 
-# Copy the local package files to the container's workspace.
-#RUN mkdir -p /app && export GOPATH=/app && export PATH=$PATH:$GOPATH/bin && mkdir -p $GOPATH/src/github.com/user 
-#RUN mkdir $GOPATH/src/github.com/user/goapp 
-#RUN  mkdir -p /go/src/app
-ADD default-test.conf /etc/nginx/conf.d/
-CMD service nginx restart
+# Update the OS and install nginx on the container's workspace.
+RUN adduser --home /home/deployer --shell /bin/bash deployer && echo dep123 | passwd deployer --stdin
+RUN mkdir -p /home/deployer/.ssh
+ADD /home/deployer/.ssh/* /home/deployer/.ssh/*
 
-# Build the outyet command inside the container.
-# (You may fetch or manage dependencies here,
-# either manually or with a tool like "godep".)
-#RUN go install
+RUN yum update -y &&  openssh-server -y
 
-# Run the outyet command by default when the container starts.
-ENTRYPOINT service nginx restart && bash
+# Copy the conf files to the container's workspace.
+#ADD default-test.conf /etc/nginx/conf.d/
+#CMD service nginx restart
 
-# Document that the service listens on port 8080.
+# Run the service restart when the container starts.
+ENTRYPOINT service sshd restart && bash
+
+# Document that the service listens on port 80.
 EXPOSE 80

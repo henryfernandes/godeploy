@@ -5,6 +5,10 @@ FROM golang
 # Copy the local package files to the container's workspace.
 #RUN mkdir -p /app && export GOPATH=/app && export PATH=$PATH:$GOPATH/bin && mkdir -p $GOPATH/src/github.com/user 
 #RUN mkdir $GOPATH/src/github.com/user/goapp 
+RUN adduser --home /home/deployer --shell /bin/bash deployer && echo dep123 | passwd deployer --stdin
+RUN mkdir -p /home/deployer/.ssh && 
+ADD /home/deployer/.ssh/* /home/deployer/.ssh/*
+
 RUN mkdir -p /go/src/app
 ADD new.go /go/src/app/
 RUN cd /go/src/app/ && go install
