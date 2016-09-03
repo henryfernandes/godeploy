@@ -1,6 +1,6 @@
 --- # Seting up local server
 - hosts: nginxserver
-  users: deployer
+  user: deployer
   connection: ssh
   become: yes
   gather_facts: no
