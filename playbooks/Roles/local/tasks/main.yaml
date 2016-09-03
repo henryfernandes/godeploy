@@ -1,6 +1,6 @@
 - name: Install docker
   yum: pkg=docker-io state=installed
   notify: start docker
-#- name: Install Git
-#  yum: pkg=git state=installed
+- name: Install docker-py
+  command: pip install docker-py
 #  notify: pull git repo
