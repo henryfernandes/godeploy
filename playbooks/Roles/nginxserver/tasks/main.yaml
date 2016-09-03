@@ -1,14 +1,16 @@
 - name: Build image and with buildargs
-   docker_image:
-     path: /home/deployer/godeploy/nginx
-     name: ginix
-     buildargs:
-       listen_port: 80
+  local_action:
+    module: docker_image
+    path: /home/deployer/godeploy/nginx
+    name: ginix
+    buildargs:
+      listen_port: 80
 - name: Deploy Container for nginx
-    docker:
-      name: gonginx
-      image: ginix
-      state: reloaled
-      ports:
-      - "80:80"
+  local_action:
+    module: docker
+    name: gonginx
+    image: ginix
+    state: reloaled
+    ports:
+    - "80:80"
 
