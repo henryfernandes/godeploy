@@ -6,9 +6,9 @@
   gather_facts: no
   pre_tasks:
   - name: Start time
-    raw: date > /home/deployer/log/time.log
+    raw: date > /home/deployer/time.log
   roles:
   - setupnginx
   post_tasks:
   - name: End Time
-    raw: date >> /home/deployer/log/time.log    
+    raw: date >> /home/deployer/time.log    
