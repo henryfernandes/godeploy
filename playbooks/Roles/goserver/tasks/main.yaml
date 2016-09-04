@@ -1,5 +1,5 @@
 - name: Build image and with buildargs
-  shell: docker build -t goapp /home/deployer/godeploy/goapp
+  shell: cd /home/deployer/godeploy/goapp && docker build -t goapp .
 - name: Deploy 1st Container for GoApp
   shell: docker run -itd --name app1 -p 8081:8484 goapp /bin/bash
 - name: Deploy 2nd Container for GoApp

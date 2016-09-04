@@ -1,6 +1,4 @@
 - name: Build image and with buildargs
-  local_action:
-    command: docker build -t ginix /home/deployer/godeploy/nginx
+  shell: cd /home/deployer/godeploy/nginx && docker build -t ginix .
 - name: Deploy 1st Container for Nginix
-  local_action:
-    command: docker run -itd --name gonginx -p 80:80 ginix /bin/bash
+  shell: docker run -itd --name gonginx -p 80:80 ginix /bin/bash
