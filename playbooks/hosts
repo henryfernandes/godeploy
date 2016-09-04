@@ -4,4 +4,6 @@ localhost ansible_connection=local
 [nginxserver]
 
 [appserver]
+172.17.0.11
+172.17.0.12
 
