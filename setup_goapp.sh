@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 sudo yum remove epel-release -y
 
 wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
@@ -39,7 +38,7 @@ sed -i "s/host2/${host2}/g" /home/deployer/godeploy/nginx/default.conf
 
 ansible-playbook -i hosts  -c local nginxserver.yml
 
-nix1=`sudo docker inspect ginix | grep IPA | grep -v Sec | awk -F"\"" '{print $4}'`;
+nix1=`sudo docker inspect gonginx | grep IPA | grep -v Sec | awk -F"\"" '{print $4}'`;
 sed -i "/nginxserver/a ${nix1}" hosts
 
 EOF
