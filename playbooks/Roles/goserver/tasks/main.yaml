@@ -3,4 +3,4 @@
 - name: Deploy 1st Container for GoApp
   shell: docker run -itd --name app1 -p 8081:8484 goapp /bin/bash
 - name: Deploy 2nd Container for GoApp
-  shell: docker run -itd --name app2 -p 8081:8484 goapp /bin/bash
+  shell: docker run -itd --name app2 -p 8082:8484 goapp /bin/bash
