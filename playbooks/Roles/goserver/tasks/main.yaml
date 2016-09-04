@@ -1,9 +1,6 @@
 - name: Build image and with buildargs
-  local_action:
-    command: docker build -t goapp /home/deployer/godeploy/goapp
+  shell: docker build -t goapp /home/deployer/godeploy/goapp
 - name: Deploy 1st Container for GoApp
-  local_action:
-    command: docker run -itd --name app1 -p 8081:8484 goapp /bin/bash
+  shell: docker run -itd --name app1 -p 8081:8484 goapp /bin/bash
 - name: Deploy 2nd Container for GoApp
-  local_action:
-    command: docker run -itd --name app2 -p 8081:8484 goapp /bin/bash
+  shell: docker run -itd --name app2 -p 8081:8484 goapp /bin/bash

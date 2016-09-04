@@ -9,6 +9,7 @@
     raw: date > $HOME/time.log
   roles:
   - local
+  - goserver
   post_tasks:
   - name: End Time
     raw: date >> $HOME/time.log    
