@@ -1,0 +1,6 @@
+- name: ensure docker is running (and enable it at boot)
+  service: name=docker state=started enabled=yes
+- name: Build image and with buildargs
+  shell: cd /home/deployer/godeploy/jenkins && docker build -t jenapp .
+- name: Deploy 1st Container for Jenkins
+  shell: docker run -itd -v $HOME/godeploy/goapp/app:/go/bin  --env JAVA_OPTS=”-Xmx8192m -XX:PermSize=256m -XX:MaxPermSize=1024m”  --name jenapp -p 8080:8080 p /bin/bash

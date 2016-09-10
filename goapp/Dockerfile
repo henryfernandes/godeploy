@@ -8,7 +8,7 @@ FROM golang
 #RUN adduser --home /home/deployer --shell /bin/bash deployer 
 
 RUN mkdir -p /go/src/app
-ADD new.go /go/src/app/
+ADD app/new.go /go/src/app/
 RUN cd /go/src/app/ && go install
 
 # Build the outyet command inside the container.
@@ -17,7 +17,8 @@ RUN cd /go/src/app/ && go install
 #RUN go install
 
 # # Run the outyet command by default when the container starts.
-ENTRYPOINT /go/bin/app
+#ENTRYPOINT /go/bin/app
+ENTRYPOINT /bin/bash
 
  # Document that the service listens on port 8080.
 EXPOSE 8484
