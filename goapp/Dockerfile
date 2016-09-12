@@ -8,7 +8,7 @@ RUN apt-get update && \
         apt-get install -y wget && \
         apt-get install -y openssh-server && \
         apt-get install -y java-1.8.0-openjdk && \
-        apt-get install -y sudo && \
+        apt-get install -y sudo 
 
 # gen dummy keys, centos doesn't autogen them like ubuntu does
 #RUN /usr/bin/ssh-keygen -A
@@ -17,23 +17,23 @@ RUN apt-get update && \
 RUN sed -ri 's/^session\s+required\s+pam_loginuid.so$/session optional pam_loginuid.so/' /etc/pam.d/sshd
 
 # Create Jenkins User
-RUN useradd jenkins -m -s /bin/bash
+RUN groupadd -g 1000 -r jenkins
+RUN useradd -m -d /var/jenkins_home -s /bin/bash -u 1000 -g 1000 jenkins  
 
 # Add public key for Jenkins login
-RUN mkdir /home/jenkins/.ssh
-COPY /files/authorized_keys /home/jenkins/.ssh/authorized_keys
-RUN chown -R jenkins /home/jenkins
-RUN chgrp -R jenkins /home/jenkins
-RUN chmod 600 /home/jenkins/.ssh/authorized_keys
-RUN chmod 700 /home/jenkins/.ssh
-
+RUN mkdir /var/jenkins_home/.ssh
+COPY $HOME/godeploy/files/authorized_keys /var/jenkins_home/.ssh/authorized_keys
+RUN chown -R jenkins /var/jenkins_home
+RUN chgrp -R jenkins /var/jenkins_home
+RUN chmod 600 /var/jenkins_home/.ssh/authorized_keys
+RUN chmod 700 /var/jenkins_home/.ssh
 
 
 # Add the jenkins user to sudoers
 RUN echo "jenkins  ALL=(ALL)  ALL" >> etc/sudoers
 
 # Set Name Servers
-COPY /files/resolv.conf /etc/resolv.conf
+COPY $HOME/godeploy/files/resolv.conf /etc/resolv.conf
 
 RUN mkdir -p /go/src/app
 ADD app/new.go /go/src/app/

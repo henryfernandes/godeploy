@@ -3,7 +3,7 @@ FROM jenkins
 
 
 RUN mkdir /var/jenkins_home/.ssh
-COPY ../goapp/files/authorized_keys /var/jenkins_home/.ssh/authorized_keys
+COPY $HOME/godeploy/files/authorized_keys /var/jenkins_home/.ssh/authorized_keys
 RUN chown -R jenkins /var/jenkins_home
 RUN chgrp -R jenkins /var/jenkins_home
 RUN chmod 600 /var/jenkins_home/.ssh/authorized_keys
