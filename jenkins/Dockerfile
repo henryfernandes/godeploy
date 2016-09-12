@@ -12,6 +12,11 @@ RUN chmod 700 /var/jenkins_home/.ssh
 RUN echo "host1		app1" >> /etc/hosts
 RUN echo "host2		app2" >> /etc/hosts
 
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+
+RUN mkdir -p /var/jenkins_home/jobs/Goapp
+COPY config-goapp.xml /var/jenkins_home/jobs/Goapp/config.xml
 
 # Document that the service listens on port 80.
 EXPOSE 8080

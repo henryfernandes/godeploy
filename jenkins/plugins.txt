@@ -1,0 +1,3 @@
+dockerhub:1.0
+disk-usage:0.25
+golang:1.1
