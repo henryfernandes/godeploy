@@ -7,7 +7,6 @@ RUN apt-get update && \
 	apt-get install -y git && \
         apt-get install -y wget && \
         apt-get install -y openssh-server && \
-        apt-get install -y java-1.8.0-openjdk && \
         apt-get install -y sudo 
 
 # gen dummy keys, centos doesn't autogen them like ubuntu does
