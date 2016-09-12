@@ -29,7 +29,7 @@ RUN chmod 700 /var/jenkins_home/.ssh
 
 
 # Add the jenkins user to sudoers
-RUN echo "jenkins  ALL=(ALL)  ALL" >> etc/sudoers
+RUN echo "jenkins  ALL=(ALL)  ALL" >> /etc/sudoers
 
 # Set Name Servers
 COPY resolv.conf /etc/resolv.conf
