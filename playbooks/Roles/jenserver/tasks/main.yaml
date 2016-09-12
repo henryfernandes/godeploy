@@ -3,4 +3,4 @@
 - name: Build image and with buildargs
   shell: cd /home/deployer/godeploy/jenkins && docker build -t jenapp .
 - name: Deploy 1st Container for Jenkins
-  shell: docker run -itd --env JAVA_OPTS="-Xmx8192m -XX:PermSize=256m -XX:MaxPermSize=1024m" --name jenapp -p 8080:8080 p /bin/bash
+  shell: docker run -itd --env JAVA_OPTS="-Xmx8192m -XX:PermSize=256m -XX:MaxPermSize=1024m" --name jenapp -p 8080:8080 jenapp /bin/bash

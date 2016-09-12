@@ -3,8 +3,10 @@
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.6.0">
+  <properties>
+    <hudson.plugins.disk__usage.DiskUsageProperty plugin="disk-usage@0.25"/>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -33,19 +35,23 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>mkdir -p $GOROOT/src/app
-cp new.go $GOROOT/src/app
-cd $GOROOT/src/app
-go install
-
-scp $GOROOT/bin/app app1:/go/bin/
-scp $GOROOT/bin/app app2:/go/bin/</command>
+      <command>scp new.go jenkins@app1:/go/src/app/
+ssh jenkins@172.17.0.51 &lt;&lt; EOF
+ sudo ps -auux | grep app | awk '{print $2}' | xargs kill -9
+ cd /go/src/app/
+ go install
+ /go/bin/app &
+EOF
+scp new.go jenkins@app2:/go/src/app/
+ssh jenkins@172.17.0.52 &lt;&lt; EOF
+ sudo ps -auux | grep app | awk '{print $2}' | xargs kill -9
+ cd /go/src/app/
+ go install
+ /go/bin/app &
+EOF
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
-  <buildWrappers>
-    <org.jenkinsci.plugins.golang.GolangBuildWrapper plugin="golang@1.1">
-      <goVersion>goinstall</goVersion>
-    </org.jenkinsci.plugins.golang.GolangBuildWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>

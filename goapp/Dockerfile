@@ -38,9 +38,10 @@ RUN mkdir -p /go/src/app
 ADD app/new.go /go/src/app/
 RUN cd /go/src/app/ && go install
 
+RUN service ssh start
+
 # Expose SSH port and run SSHD
 EXPOSE 22
-CMD ["/go/bin/app &"]
-CMD ["/usr/sbin/sshd","-D"]
+CMD ["/go/bin/app", "&"]
 
 
