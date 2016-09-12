@@ -22,7 +22,7 @@ RUN useradd -m -d /var/jenkins_home -s /bin/bash -u 1000 -g 1000 jenkins
 
 # Add public key for Jenkins login
 RUN mkdir /var/jenkins_home/.ssh
-COPY $HOME/godeploy/files/authorized_keys /var/jenkins_home/.ssh/authorized_keys
+COPY authorized_keys /var/jenkins_home/.ssh/authorized_keys
 RUN chown -R jenkins /var/jenkins_home
 RUN chgrp -R jenkins /var/jenkins_home
 RUN chmod 600 /var/jenkins_home/.ssh/authorized_keys
@@ -33,7 +33,7 @@ RUN chmod 700 /var/jenkins_home/.ssh
 RUN echo "jenkins  ALL=(ALL)  ALL" >> etc/sudoers
 
 # Set Name Servers
-COPY $HOME/godeploy/files/resolv.conf /etc/resolv.conf
+COPY resolv.conf /etc/resolv.conf
 
 RUN mkdir -p /go/src/app
 ADD app/new.go /go/src/app/
