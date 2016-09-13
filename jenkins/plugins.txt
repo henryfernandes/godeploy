@@ -1,4 +1,10 @@
 dockerhub:1.0
-disk-usage:0.25
+mailer:1.8
+ssh-credentials:1.12
+git-client:2.0.0 
+matrix-project:1.7.1
+credentials:2.1.4
+workflow-scm-step:1.14.2
+scm-api:1.2
 golang:1.1
 git:3.0.0

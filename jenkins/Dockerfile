@@ -19,10 +19,10 @@ COPY resolv.conf /etc/resolv.conf
 RUN chown -R jenkins /var/jenkins_home
 RUN chgrp -R jenkins /var/jenkins_home
 
-RUN jenkins.sh &
+#RUN jenkins.sh &
 # Document that the service listens on port 80.
 EXPOSE 8080
 
-#CMD ["/usr/local/bin/jenkins.sh", "-D"]
+CMD ["/usr/local/bin/jenkins.sh"]
 
 
