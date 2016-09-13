@@ -35,15 +35,15 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>scp new.go jenkins@app1:/go/src/app/
-ssh jenkins@172.17.0.51 &lt;&lt; EOF
+      <command>scp -o StrictHostKeyChecking=no new.go jenkins@app1:/go/src/app/
+ssh -o StrictHostKeyChecking=no jenkins@172.17.0.51 &lt;&lt; EOF
  sudo ps -auux | grep app | awk '{print $2}' | xargs kill -9
  cd /go/src/app/
  go install
  /go/bin/app &
 EOF
-scp new.go jenkins@app2:/go/src/app/
-ssh jenkins@172.17.0.52 &lt;&lt; EOF
+scp -o StrictHostKeyChecking=no new.go jenkins@app2:/go/src/app/
+ssh -o StrictHostKeyChecking=no jenkins@172.17.0.52 &lt;&lt; EOF
  sudo ps -auux | grep app | awk '{print $2}' | xargs kill -9
  cd /go/src/app/
  go install
